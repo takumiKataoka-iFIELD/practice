@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class controller {
 	
 	@Autowired
-	userEntity userEntity;
+	UserEntityRepository userEntity;
  
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String go() {
-		return "";
+		return "userData";
 	}
 	
-	@RequestMapping(value="/", method = RequestMethod.POST)
-	public String userAdd(@RequestParam(user_name)String user_name,
+	@RequestMapping(value="/userAdd", method = RequestMethod.POST)
+	public String userAdd(@RequestParam(name)String name,
 							@RequestParam(email)String email,
-							@RequestParam(password)String password,Model model) {
-		userEntity.save(user_name, email, password);
-		return "";
+							@RequestParam(password)String password) {
+		userEntity.save(name, email, password);
+		return "userData";
 	}
 	
 	@RequestMapping(value="/", method = RequestMethod.GET)
