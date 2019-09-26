@@ -4,9 +4,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
+
+	<form action="/search" method="get">
+		<input type="text" name="name">
+		<input type="submit" value="検索">
+	</form>
+	
 	<table>
 		<tr>
 			<th>名前</th><th>メールアドレス</th>
@@ -17,7 +24,7 @@
 		</tr>
 	</table>
 	
-	<form action="/addgo" method="get">
+	<form action="/" method="get">
 		<input type="submit" value="登録画面">
 	</form>
 	

@@ -16,11 +16,11 @@ public class controller {
 	UserEntityRepository UserEntityRepository;
  
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String go() {
+	public String go(Model model) {
 		return "userAdd";
 	}
 	
-	@RequestMapping(value="/userA", method = RequestMethod.POST)
+	@RequestMapping(value="/userAdd", method = RequestMethod.POST)
 	public String userAdd(@RequestParam("name")String name,
 							@RequestParam("email")String email,
 							@RequestParam("password")String password) {
@@ -32,6 +32,13 @@ public class controller {
 	public String userData(Model model) {
 		List<UserEntity> data = UserEntityRepository.findAll();
 		model.addAttribute("data", data);
+		return "userData";
+	}
+	
+	@RequestMapping(value="/search", method = RequestMethod.GET)
+	public String userSearch(@RequestParam("name")String name, Model model) {
+		UserEntity data = UserEntityRepository.findByName(name);
+		model.addAttribute("data", "data");
 		return "userData";
 	}
 	
