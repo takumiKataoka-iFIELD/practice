@@ -7,6 +7,14 @@
 </head>
 
 <body>
-	
+	<table>
+		<tr>
+			<th>名前</th><th>メールアドレス</th>
+		</tr>
+		<tr th:each="userEntity : ${data}">
+			<td th:text="${name}"></td>
+			<td th:text="${email}"></td>
+		</tr>
+	</table>
 </body>
 </html>

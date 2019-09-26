@@ -1,5 +1,7 @@
 package com.tuyano.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,24 +13,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class controller {
 	
 	@Autowired
-	UserEntityRepository userEntity;
+	UserEntityRepository UserEntityRepository;
  
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String go() {
-		return "userData";
+		return "userAdd";
 	}
 	
 	@RequestMapping(value="/userAdd", method = RequestMethod.POST)
-	public String userAdd(@RequestParam(name)String name,
-							@RequestParam(email)String email,
-							@RequestParam(password)String password) {
-		userEntity.save(name, email, password);
-		return "userData";
+	public String userAdd(@RequestParam("name")String name,
+							@RequestParam("email")String email,
+							@RequestParam("password")String password) {
+		UserEntityRepository.save(new UserEntity(name, email, password));
+		return "userAdd";
 	}
 	
-	@RequestMapping(value="/", method = RequestMethod.GET)
+	@RequestMapping(value="/userData", method = RequestMethod.GET)
 	public String userData(Model model) {
-		return "";
+		List<UserEntity> data = UserEntityRepository.findAll();
+		model.addAttribute("data", data);
+		return "userData";
 	}
 	
 }
