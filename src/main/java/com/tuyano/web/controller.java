@@ -37,9 +37,27 @@ public class controller {
 	
 	@RequestMapping(value="/search", method = RequestMethod.GET)
 	public String userSearch(@RequestParam("name")String name, Model model) {
-		UserEntity data = UserEntityRepository.findByName(name);
-		model.addAttribute("data", "data");
+		List<UserEntity> data = UserEntityRepository.findByName(name);
+		model.addAttribute("data", data);
+		return "userData";
+	}
+	
+	@RequestMapping(value="/Msearch", method = RequestMethod.GET)
+	public String emailSearch(@RequestParam("email")String email, Model model) {
+		List<UserEntity> data = UserEntityRepository.findByEmail(email);
+		model.addAttribute("data", data);
 		return "userData";
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
