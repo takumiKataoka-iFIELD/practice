@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+	<form action="/search" method="get">
+		名前<input type="text" name="name">
+		<input type="submit" value="検索">
+	</form>
+	
+	<form action="/Msearch" method="get">
+		メールアドレス<input type="text" name="email">
+		<input type="submit" value="検索">
+	</form>
+	
+	<table>
+		<tr>
+			<th>名前</th><th>メールアドレス</th>
+		</tr>
+		<tr th:each="userEntity : ${data}">
+			<td th:text="${userEntity.name}"></td>
+			<td th:text="${userEntity.email}"></td>
+		</tr>
+	</table>
+	
+	<form action="/" method="get">
+		<input type="submit" value="登録画面">
+	</form>
+	
+</body>
+</html>
