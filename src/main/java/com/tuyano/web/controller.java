@@ -20,7 +20,7 @@ public class controller {
 		return "userAdd";
 	}
 	
-	@RequestMapping(value="/userAdd", method = RequestMethod.POST)
+	@RequestMapping(value="/userA", method = RequestMethod.POST)
 	public String userAdd(@RequestParam("name")String name,
 							@RequestParam("email")String email,
 							@RequestParam("password")String password) {

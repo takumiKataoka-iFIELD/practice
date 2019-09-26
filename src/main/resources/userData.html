@@ -12,9 +12,14 @@
 			<th>名前</th><th>メールアドレス</th>
 		</tr>
 		<tr th:each="userEntity : ${data}">
-			<td th:text="${name}"></td>
-			<td th:text="${email}"></td>
+			<td th:text="${userEntity.name}"></td>
+			<td th:text="${userEntity.email}"></td>
 		</tr>
 	</table>
+	
+	<form action="/addgo" method="get">
+		<input type="submit" value="登録画面">
+	</form>
+	
 </body>
 </html>
