@@ -15,11 +15,13 @@ public class controller {
 	@Autowired
 	UserEntityRepository UserEntityRepository;
  
+	//ユーザー登録画面へ遷移
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String go(Model model) {
 		return "userAdd";
 	}
 	
+	//ユーザー登録
 	@RequestMapping(value="/userAdd", method = RequestMethod.POST)
 	public String userAdd(@RequestParam("name")String name,
 							@RequestParam("email")String email,
@@ -28,6 +30,7 @@ public class controller {
 		return "userAdd";
 	}
 	
+	//ユーザー全件表示
 	@RequestMapping(value="/userData", method = RequestMethod.GET)
 	public String userData(Model model) {
 		List<UserEntity> data = UserEntityRepository.findAll();
@@ -35,24 +38,27 @@ public class controller {
 		return "userData";
 	}
 	
+	//名前検索
 	@RequestMapping(value="/Nsearch", method = RequestMethod.GET)
 	public String userSearch(@RequestParam("name")String name, Model model) {
-		List<UserEntity> data = UserEntityRepository.findByNameContains(name);
+		List<UserEntity> data = UserEntityRepository.findByName(name);
 		model.addAttribute("data", data);
 		return "userData";
 	}
 	
+	//メールアドレス検索
 	@RequestMapping(value="/Msearch", method = RequestMethod.GET)
 	public String emailSearch(@RequestParam("email")String email, Model model) {
-		List<UserEntity> data = UserEntityRepository.findByEmailContains(email);
+		List<UserEntity> data = UserEntityRepository.findByEmail(email);
 		model.addAttribute("data", data);
 		return "userData";
 	}
 	
+	//名前とメールアドレス部分一致検索
 	@RequestMapping(value="/NMsearch", method = RequestMethod.GET)
 	public String nmsearch(@RequestParam("name")String name,
 							@RequestParam("email")String email,Model model) {
-		List<UserEntity> data = UserEntityRepository.findByNameAndEmailContains(name, email);
+		List<UserEntity> data = UserEntityRepository.findByNameContainingAndEmailContaining(name, email);
 		model.addAttribute("data", data);
 		return "userData";
 	}

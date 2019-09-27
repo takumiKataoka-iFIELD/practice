@@ -8,14 +8,17 @@
 </head>
 
 <body>
+
+	<!-- ユーザー登録 -->
 	<p>新規</p>
 	<form action="/userAdd" method="post">
-		名前<input type="text" name="name">
-		メールアドレス<input type="text" name="email">
-		パスワード<input type="text" name="password">
+		<p>名前<input type="text" name="name"></p>
+		<p>メールアドレス<input type="text" name="email"></p>
+		<p>パスワード<input type="text" name="password"></p>
 		<input type="submit" value="登録">
 	</form>
 	
+	<!-- ユーザー一覧へ遷移 -->
 	<form action="/userData" method="get">
 		<input type="submit" value="ユーザー一覧">
 	</form>
