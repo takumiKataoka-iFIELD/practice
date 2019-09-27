@@ -35,21 +35,27 @@ public class controller {
 		return "userData";
 	}
 	
-	@RequestMapping(value="/search", method = RequestMethod.GET)
+	@RequestMapping(value="/Nsearch", method = RequestMethod.GET)
 	public String userSearch(@RequestParam("name")String name, Model model) {
-		List<UserEntity> data = UserEntityRepository.findByName(name);
+		List<UserEntity> data = UserEntityRepository.findByNameContains(name);
 		model.addAttribute("data", data);
 		return "userData";
 	}
 	
 	@RequestMapping(value="/Msearch", method = RequestMethod.GET)
 	public String emailSearch(@RequestParam("email")String email, Model model) {
-		List<UserEntity> data = UserEntityRepository.findByEmail(email);
+		List<UserEntity> data = UserEntityRepository.findByEmailContains(email);
 		model.addAttribute("data", data);
 		return "userData";
 	}
 	
-	
+	@RequestMapping(value="/NMsearch", method = RequestMethod.GET)
+	public String nmsearch(@RequestParam("name")String name,
+							@RequestParam("email")String email,Model model) {
+		List<UserEntity> data = UserEntityRepository.findByNameAndEmailContains(name, email);
+		model.addAttribute("data", data);
+		return "userData";
+	}
 }
 
 
