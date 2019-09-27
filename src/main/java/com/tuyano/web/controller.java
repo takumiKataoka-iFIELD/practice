@@ -12,13 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes("message")
+@SessionAttributes("logName")
 public class controller {
 	
-	@ModelAttribute("message")
-	String message() {
-		return "This is default message.";
-	}
 	
 	@Autowired
 	UserEntityRepository UserEntityRepository;
@@ -71,18 +67,18 @@ public class controller {
 		return "userData";
 	}
 	
-	//ログインとセッション
+	//ログインとセッション	
 	@RequestMapping(value="/loginnn", method = RequestMethod.POST)
-	public String session(@ModelAttribute("name")String name,
-							@ModelAttribute("password")String password,Model model) {
+	public String session(@RequestParam("name")String name,
+							@RequestParam("password")String password,Model model) {
 		UserEntity data = UserEntityRepository.findByNameAndPassword(name, password);
 		String res = "こんにちは、" + name + "さん";
-		if(data != null) {
-			model.addAttribute("name", res);
-			return "userData";
-		}
+		model.addAttribute("logName", res);
 		return "userData";
 	}
+	
+	
+	
 	
 	
 	
