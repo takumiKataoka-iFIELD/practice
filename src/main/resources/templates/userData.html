@@ -8,7 +8,9 @@
 </head>
 
 <body>
-a
+
+	<p th:text="${name}">
+
 	<!-- ユーザー検索 -->
 	<form action="/NMsearch" method="get">
 		名前
@@ -16,6 +18,15 @@ a
 		メールアドレス
 		<input type="text" name="email">
 		<input type="submit" value="検索">
+	</form>
+	
+	<!-- ログイン -->
+	<form action="/loginnn" method="post">
+		名前
+		<input type="text" name="name">
+		パスワード
+		<input type="password" name="password">
+		<input type="submit" value="ログイン">
 	</form>
 	
 	<!-- ユーザー一覧 -->

@@ -5,12 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes("message")
 public class controller {
+	
+	@ModelAttribute("message")
+	String message() {
+		return "This is default message.";
+	}
 	
 	@Autowired
 	UserEntityRepository UserEntityRepository;
@@ -62,6 +70,43 @@ public class controller {
 		model.addAttribute("data", data);
 		return "userData";
 	}
+	
+	//ログインとセッション
+	@RequestMapping(value="/loginnn", method = RequestMethod.POST)
+	public String session(@ModelAttribute("name")String name,
+							@ModelAttribute("password")String password,Model model) {
+		UserEntity data = UserEntityRepository.findByNameAndPassword(name, password);
+		String res = "こんにちは、" + name + "さん";
+		if(data != null) {
+			model.addAttribute("name", res);
+			return "userData";
+		}
+		return "userData";
+	}
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value="/a", method = RequestMethod.GET)
+	public String index(@ModelAttribute("message")String msg,Model model) {
+		System.out.println("@ModelAttribute(\"message\"):" + msg);
+		model.addAttribute("title", "Hello Page");
+		return "hello";
+	}
+	
+	@RequestMapping(value="/a", method = RequestMethod.POST)
+	public String form(@ModelAttribute("message")String msg,
+						@ModelAttribute("input1")String input1,Model model) {
+		System.out.println("@ModelAttribute(\"message\")" + msg);
+		String res = "最後の入力：" + input1;
+		model.addAttribute("title", "Anser Page");
+		model.addAttribute("message", res);
+		return "hello";
+	}
+
 }
 
 
