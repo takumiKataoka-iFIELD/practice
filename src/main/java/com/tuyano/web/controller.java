@@ -71,7 +71,7 @@ public class controller {
 	@RequestMapping(value="/loginnn", method = RequestMethod.POST)
 	public String session(@RequestParam("name")String name,
 							@RequestParam("password")String password,Model model) {
-		UserEntity data = UserEntityRepository.findByNameAndPassword(name, password);
+//		UserEntity data = UserEntityRepository.findByNameAndPassword(name, password);
 		String res = "こんにちは、" + name + "さん";
 		model.addAttribute("logName", res);
 		return "userData";
