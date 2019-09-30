@@ -17,7 +17,7 @@
 		<input type="text" name="email">
 		<input type="submit" value="検索">
 	</form>
-	
+
 	<!-- ユーザー一覧 -->
 	<table>
 		<tr>
@@ -28,11 +28,17 @@
 			<td th:text="${userEntity.email}"></td>
 		</tr>
 	</table>
-	
+
 	<!-- 登録画面へ遷移 -->
 	<form action="/" method="get">
 		<input type="submit" value="登録画面">
 	</form>
-	
+
+	<form action = "/add" method = "POST">
+		<input type = "text" name = "user">
+		<input type = "submit" value = "ログイン">
+	</form>
+
+	<p th:text = "${name}">何もなし</p>
 </body>
 </html>
