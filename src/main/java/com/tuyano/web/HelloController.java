@@ -12,6 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloController {
 
+	@GetMapping("book3")
+	public String book3(Model model) {
+		return "book3";
+	}
 	@GetMapping("/book2")
 	public ModelAndView index(ModelAndView mav) {
 		mav.setViewName("book2");
