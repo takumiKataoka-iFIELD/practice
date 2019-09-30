@@ -13,4 +13,6 @@ public interface UserEntityRepository extends JpaRepository<UserEntity, Integer>
 	List<UserEntity> findByEmail(String email);
 
 	List<UserEntity> findByNameContainingAndEmailContaining(String name, String email);
+	
+	UserEntity findByNameAndPassword(String name, String password);
 }
