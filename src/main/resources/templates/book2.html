@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+	<h1>Hello Page</h1>
+	<pre th:text="${msg}">please wait</pre>
+
+	<form action = "/book2" method = "post">
+		<div>
+			<input type = "checkbox" name = "check1">
+			<label for = "check1">チェック</label>
+		</div>
+		<div>
+			<input type = "radio" name = "radio1" value = "male">
+			<label for = "radioA">男性</label>
+		</div>
+		<div>
+			<input type = "radio" name = "radio1" value = "female">
+			<label for = "radioB">女性</label>
+		</div>
+		<div>
+			<select name = "select1"size = "4">
+				<option value = "Windows">Windows</option>
+				<option value = "Mac">Mac</option>
+				<option value = "Linux">Linux</option>
+			</select>
+			<select name = "select2" size = "4" multiple = "multiple">
+				<option value = "Android">Android</option>
+				<option value = "iPhone">iPhone</option>
+				<option value = "Wionfore">Windows Phone</option>
+			</select>
+		</div>
+		<input type = "submit" value = "click">
+
+	</form>
+
+</body>
+</html>
