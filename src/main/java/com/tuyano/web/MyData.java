@@ -3,22 +3,21 @@ package com.tuyano.web;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "mydata")
 public class MyData {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-	@NotNull
 	private Long id;
 
 	@Column(length = 50, nullable =false)
@@ -37,6 +36,12 @@ public class MyData {
 	@Column(nullable = true)
 	private String memo;
 
+	public MyData(String name,String mail,String memo,int age) {
+		this.name = name;
+		this.mail = mail;
+		this.memo = memo;
+		this.age = age;
+	}
 	public MyData() {
 
 	}
