@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloController {
 
+
 	@Autowired
 	MyDataRepository repository;
 
@@ -45,6 +46,7 @@ public class HelloController {
 		d3.setMail("takumi@gdi.com");
 		d3.setMemo("rgrgrgre");
 		repository.save(d3);
+
 	}
 	@GetMapping("/book2")
 	public ModelAndView index(ModelAndView mav) {
