@@ -145,7 +145,7 @@ public class HelloController {
 	}
 
 	@PostMapping("/find")
-	public ModelAndView search(HttpServletRequest request,ModeAndView mav) {
+	public ModelAndView search(HttpServletRequest request,ModelAndView mav) {
 		mav.setViewName("find");
 		String param = request.getParameter("fstr");
 		if (param == "") {
