@@ -39,4 +39,14 @@ public class MyDataDaoImpl implements MyDataDao<MyData> {
 		return (List<MyData>)entityManager.createQuery("from MyData where name = " + name).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MyData> find(String fstr) {
+		List <MyData> list;
+		String jpql = "from MyData where id = :fstr";
+		Query query = entityManager.createQuery(jpql).setParameter("fstr", Long.parseLong(fstr));
+		list = query.getResultList();
+		return list;
+	}
+
 }
