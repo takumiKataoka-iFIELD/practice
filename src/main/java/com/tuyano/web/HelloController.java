@@ -3,6 +3,8 @@ package com.tuyano.web;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +26,13 @@ public class HelloController {
 	@Autowired
 	MyDataRepository repository;
 
+	@PersistenceContext
+	EntityManager entityManager;
+
+	MyDataDaoImpl dao;
 	@PostConstruct
 	public void init() {
+		dao = new MyDataDaoImpl(entityManager);
 		MyData d1 = new MyData();
 		d1.setName("tuyano");
 		d1.setAge(123);
@@ -47,6 +54,14 @@ public class HelloController {
 		d3.setMemo("rgrgrgre");
 		repository.save(d3);
 
+	}
+	@GetMapping("entitymanager")
+	public ModelAndView entity(ModelAndView mav) {
+		mav.setViewName("entitymanager");
+		mav.addObject("msg","MyDataのサンプルです");
+		List <MyData> list = dao.getAll();
+		mav.addObject("datalist",list);
+		return mav;
 	}
 	@GetMapping("/book2")
 	public ModelAndView index(ModelAndView mav) {
