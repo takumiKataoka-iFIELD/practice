@@ -7,10 +7,10 @@ ecripseのヘルプ→マーケットプライスでSTSを検索してインス�
 
 依存関係の選択についてはSpringの開発で必要なものを選択する
 
-〇Spring Data JPA
-〇Tymeleaf
-〇Spring Web
-上記はSpring開発をするうえでほぼ必須になる
+〇Spring Data JPA</br>
+〇Tymeleaf</br>
+〇Spring Web</br>
+上記はSpring開発をするうえでほぼ必須になる</br>
 
 あとから依存関係を変更する場合にはPOM.xmlに追加記述する必要がある
 
