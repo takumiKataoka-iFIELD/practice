@@ -3,6 +3,9 @@ package com.tuyano.web;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +27,13 @@ public class HelloController {
 	@Autowired
 	MyDataRepository repository;
 
+	@PersistenceContext
+	EntityManager entityManager;
+
+	MyDataDaoImpl dao;
 	@PostConstruct
 	public void init() {
+		dao = new MyDataDaoImpl(entityManager);
 		MyData d1 = new MyData();
 		d1.setName("tuyano");
 		d1.setAge(123);
@@ -47,6 +55,14 @@ public class HelloController {
 		d3.setMemo("rgrgrgre");
 		repository.save(d3);
 
+	}
+	@GetMapping("entitymanager")
+	public ModelAndView entity(ModelAndView mav) {
+		mav.setViewName("entitymanager");
+		mav.addObject("msg","MyDataのサンプルです");
+		List <MyData> list = dao.getAll();
+		mav.addObject("datalist",list);
+		return mav;
 	}
 	@GetMapping("/book2")
 	public ModelAndView index(ModelAndView mav) {
@@ -114,5 +130,33 @@ public class HelloController {
 			return "book4";
 		}
 
+	}
+
+	@RequestMapping("/find")
+	public ModelAndView find(ModelAndView mav) {
+		mav.setViewName("find");
+		mav.addObject("title","Find Page");
+		mav.addObject("msg","MyDataのサンプルです");
+		mav.addObject("value","");
+		List <MyData> list = dao.getAll();
+		mav.addObject("data",list);
+
+		return mav;
+	}
+
+	@PostMapping("/find")
+	public ModelAndView search(HttpServletRequest request,ModelAndView mav) {
+		mav.setViewName("find");
+		String param = request.getParameter("fstr");
+		if (param == "") {
+			mav = new ModelAndView("redirect:/find");
+		}else {
+			mav.addObject("title","Find result");
+			mav.addObject("msg","「" + param + "」の検索結果");
+			mav.addObject("value",param);
+			List<MyData> list = dao.find(param);
+			mav.addObject("data",list);
+		}
+		return mav;
 	}
 }
