@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+	.hidden{
+		display:none;
+	}
+	#radio1:checked~#radio2{
+		display: none;
+	}
+	#radio1:checked~#radio2:checked~.hidden{
+		display:block;
+	}
+</style>
+</head>
+
+<body>
+	<input type = "checkbox" name = "radio" id = "radio1">1
+	<input type = "checkbox" name = "radio" id = "radio2">2
+	<div class = "hidden">efewfe</div>
+</body>
+</html>
