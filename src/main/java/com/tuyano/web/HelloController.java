@@ -104,7 +104,7 @@ public class HelloController {
 	@PostMapping("/book4")
 	public String book4Form(@ModelAttribute("formModel")@Validated MyData mydata,BindingResult result,Model model) {
 		if(!result.hasErrors()) {
-			repository.saveAndFlush(mydata);
+			repository.save(mydata);
 			return "redirect:book4";
 		}else {
 			List <MyData> list = repository.findAll();
