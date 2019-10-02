@@ -25,4 +25,9 @@ public class MsgDataDaoImpl implements MsgDataDao {
 		return list;
 	}
 
+	@Override
+	public MsgData findById(long id) {
+		return (MsgData)entityManager.createQuery("from MsgData where id = " + id).getSingleResult();
+	}
+
 }

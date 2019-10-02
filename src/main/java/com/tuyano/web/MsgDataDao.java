@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface MsgDataDao  extends Serializable{
 
-	List <MsgData> getAll();
+	public List <MsgData> getAll();
+	public MsgData findById(long id);
 
 }
