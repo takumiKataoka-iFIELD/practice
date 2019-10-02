@@ -17,7 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 @Controller
 @SessionAttributes("logName")
 public class controller {
-	
+	ljl
 	
 	@Autowired
 	UserEntityRepository UserEntityRepository;
