@@ -17,9 +17,10 @@ public class MsgDataDaoImpl implements MsgDataDao {
 		entityManager = manager;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<MsgData> getAll() {
-		Query query = entityManager.createQuery("from MyData");
+		Query query = entityManager.createQuery("from MsgData");
 		List <MsgData> list = query.getResultList();
 		entityManager.close();
 		return list;

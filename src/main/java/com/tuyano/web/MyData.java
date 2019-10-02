@@ -19,9 +19,21 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "mydata")
 public class MyData {
 
+	//以下アソシエーション記述
+	//---------------------------------------------
 	@OneToMany(cascade = CascadeType.ALL)
 	@Column(nullable = true)
 	private List<MsgData> msgdatas;
+
+	public List<MsgData> getMsgDatas(){
+		return msgdatas;
+	}
+
+	public void setMsgDatas(List<MsgData> msgdatas) {
+		this.msgdatas = msgdatas;
+	}
+	//-----------------------------------------------
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

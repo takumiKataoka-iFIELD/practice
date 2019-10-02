@@ -2,12 +2,17 @@ package com.tuyano.web;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,7 +26,7 @@ public class MsgController {
 
 	MsgDataDaoImpl dao;
 
-	@RequestMapping("/msg")
+	@GetMapping("/msg")
 	public ModelAndView msg(ModelAndView mav) {
 		mav.setViewName("showMsgData");
 		mav.addObject("title","Sample");
@@ -31,5 +36,24 @@ public class MsgController {
 		List<MsgData> list = dao.getAll();
 		mav.addObject("data",list);
 		return mav;
+	}
+
+	@PostMapping("/msg")
+	public ModelAndView msgform(@Valid @ModelAttribute MsgData msgdata,Errors result,ModelAndView mav) {
+		if(result.hasErrors()) {
+			mav.setViewName("showMsgData");
+			mav.addObject("title","Sample[ERROR]");
+			mav.addObject("msg","値を再入力してください。");
+			return mav;
+		}else {
+			repository.saveAndFlush(msgdata);
+			return new ModelAndView("redirect:/msg");
+		}
+	}
+
+	@PostConstruct
+	public void init() {
+		System.out.println("ok");
+		dao = new MsgDataDaoImpl(entityManager);
 	}
 }

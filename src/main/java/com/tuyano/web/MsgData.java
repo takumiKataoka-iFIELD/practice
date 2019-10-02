@@ -24,6 +24,8 @@ public class MsgData {
 	@NotEmpty
 	private String message;
 
+	//以下の記述により、アソシエーションを組んでいる
+	//-----------------------------------------------------
 	@ManyToOne
 	private MyData mydata;
 
@@ -31,6 +33,10 @@ public class MsgData {
 		mydata = new MyData();
 	}
 
+	public void setMyData(MyData mydata) {
+		this.mydata = mydata;
+	}
+	//-----------------------------------------------------
 	public Long getId() {
 		return id;
 	}
@@ -59,9 +65,7 @@ public class MsgData {
 		return mydata;
 	}
 
-	public void setMyData(MyData mydata) {
-		this.mydata = mydata;
-	}
+
 
 
 

@@ -2,7 +2,6 @@
 <html xmlns:th = "http://www.thymeleaf.org">
 <head>
 	<title th:text = "${title}">top page</title>
-	<meta http-equiv = "Content-Type" content = "text/html; charset = UTF-8">
 	<link th:href="@{/css/msg.css}" rel="stylesheet">
 </head>
 <body>
@@ -33,10 +32,9 @@
 		<tr>
 			<th>ID</th><th>名前</th><th>タイトル</th>
 		</tr>
-		<tr th:each = " entity : ${data}">
+		<tr th:each = "entity:${data}">
 			<td th:text = "${entity.id}"></td>
-			<td th:text = "${entity.mydata.name"></td>
-			<td th:text = "${entity.titile"></td>
+			<td th:text = "${entity.name}"></td>
 		</tr>
 	</table>
 </body>
