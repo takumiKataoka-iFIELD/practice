@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+	<title th:text = "${title}">top page</title>
+	<meta http-equiv = "Content-Type" content = "text/html; charset = UTF-8">
+	<link th:href="@{/css/msg.css}" rel="stylesheet">
+</head>
+<body>
+	<h1 th:text = "${title}">MyMsg Page</h1>
+	<p th:text = "${msg}"></p>
+	<form method = "post" action = "/msg" th:object = "${formModel}">
+		<table>
+		<tr><td>
+			<input type = "hidden" name = "id" th:value = "*{id}">
+			<label for = "title">タイトル</label></td>
+			<td><input type = "text" name = "title" th:value = "*{title}">
+		</td></tr>
+		<tr>
+			<td><label for = "message">メッセージ</label></td>
+			<td><textarea  name = "message" th:text = "*{message}"></textarea>
+		</tr>
+		<tr>
+			<td><label for = "mydata">MYDATA_ID</label></td>
+			<td><input type = "text" name = "mydata"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type = "submit"></td>
+		</table>
+	</form>
+
+	<table>
+		<tr>
+			<th>ID</th><th>名前</th><th>タイトル</th>
+		</tr>
+		<tr th:each = " entity : ${data}">
+			<td th:text = "${entity.id}"></td>
+			<td th:text = "${entity.mydata.name"></td>
+			<td th:text = "${entity.titile"></td>
+		</tr>
+	</table>
+</body>
+</html>
