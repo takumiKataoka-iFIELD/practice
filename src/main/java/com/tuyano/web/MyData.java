@@ -1,10 +1,14 @@
 package com.tuyano.web;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
@@ -14,6 +18,22 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "mydata")
 public class MyData {
+
+	//以下アソシエーション記述
+	//---------------------------------------------
+	@OneToMany(cascade = CascadeType.ALL)
+	@Column(nullable = true)
+	private List<MsgData> msgdatas;
+
+	public List<MsgData> getMsgDatas(){
+		return msgdatas;
+	}
+
+	public void setMsgDatas(List<MsgData> msgdatas) {
+		this.msgdatas = msgdatas;
+	}
+	//-----------------------------------------------
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
